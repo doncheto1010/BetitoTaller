@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betito Technology</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header id="encabezado-principal">
+        <h1>Betito Technology</h1>
+        <p>Betito Manotas te lo arregla</p>
+    </header>
+
+    <nav>
+        <a href="#servicios">Servicios</a> | 
+        <a href="#horarios">Horarios</a> | 
+        <a href="#ubicacion">Ubicacion</a> | 
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <main>
+        
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <p>Trae tu compu y nosotros la revisamos. Hacemos de todo.</p>
+            
+            <div class="caja-servicio">
+                <h3>Lo que hacemos aqui:</h3>
+                <ul>
+                    <li>Poner discos duros nuevos</li>
+                    <li>Poner mas memoria RAM</li>
+                    <li>Limpiar el polvo y cambiar la pasta</li>
+                    <li>Formatear Windows</li>
+                </ul>
+            </div>
+
+            <center>
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Computadora desarmada" class="imagen-taller">
+            </center>
+        </section>
+
+        <section id="horarios">
+            <h2>Horarios y Costos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>A que hora abrimos</th>
+                        <th>Costo por checarla</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lunes a Viernes</td>
+                        <td>09:00 AM - 06:00 PM</td>
+                        <td>$150 pesos</td>
+                    </tr>
+                    <tr>
+                        <td>Sabados</td>
+                        <td>10:00 AM - 02:00 PM</td>
+                        <td>$200 pesos</td>
+                    </tr>
+                    <tr>
+                        <td>Domingos</td>
+                        <td>No abrimos</td>
+                        <td>Nada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="ubicacion">
+            <h2>Donde estamos</h2>
+            <p>Aqui esta el mapa para que no te pierdas en Juarez:</p>
+            <center>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108422.38531126749!2d-106.50280456637042!3d31.674996969830588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86e75d90e918c5e1%3A0x6bba84b0f983637e!2sCiudad%20Ju%C3%A1rez%2C%20Chih.!5e0!3m2!1ses-419!2smx!4v1714580000000!5m2!1ses-419!2smx" width="500" height="300" allowfullscreen="" loading="lazy"></iframe>
+            </center>
+        </section>
+
+        <section id="contacto">
+            <h2>Mandanos un mensaje</h2>
+            <form id="formularioContacto" onsubmit="procesarFormulario(event)">
+                <label for="nombre">Tu nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="email">Tu correo:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="telefono">Tu telefono (10 numeros):</label><br>
+                <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}"><br><br>
+
+                <label for="mensaje">Que le pasa a tu compu:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="5" cols="40" required></textarea><br><br>
+
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Betito Technology 2026. Practica 2.</p>
+    </footer>
+
+    <script>
+        function procesarFormulario(evento) {
+            evento.preventDefault(); 
+            
+            // 1. Obtener los valores que escribió el usuario
+            const nombreUsuario = document.getElementById('nombre').value;
+            const emailUsuario = document.getElementById('email').value;
+            const telefonoUsuario = document.getElementById('telefono').value;
+            const mensajeUsuario = document.getElementById('mensaje').value;
+
+            // 2. Crear un objeto con esos datos
+            const datosFormulario = {
+                nombre: nombreUsuario,
+                correo: emailUsuario,
+                telefono: telefonoUsuario,
+                problema: mensajeUsuario
+            };
+
+            // 3. Guardar en localStorage
+            localStorage.setItem('datosClienteBetito', JSON.stringify(datosFormulario));
+
+            // 4. MOSTRAR AUTOMÁTICAMENTE EN LA CONSOLA (Para la captura del profe)
+            console.log("✅ ¡Datos guardados en Local Storage exitosamente!");
+            console.log(localStorage.getItem('datosClienteBetito'));
+
+            // 5. Mostrar alerta y limpiar formulario
+            alert(`Ya quedó ${nombreUsuario}, luego te marcamos.`);
+            document.getElementById('formularioContacto').reset();
+        }
+    </script>
+</body>
+</html>
